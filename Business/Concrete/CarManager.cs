@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
@@ -21,7 +22,7 @@ namespace Business.Concrete
             
         }
 
-        public void Add(Car car)
+        public IResult Add(Car car)
         {
 
             using (DatabasecampContext context = new DatabasecampContext())
@@ -36,8 +37,8 @@ namespace Business.Concrete
                 {
                     Console.WriteLine("Data could not be saved. BrandName must not be less than 2 characters and DailyPrice must be greater than 0");
                 }
-
             }
+            return new Result(true,"Ürün eklendi");
         }
 
         public void Delete(Car car)
@@ -64,6 +65,11 @@ namespace Business.Concrete
             return _carDal.GetAll(c => c.ColorId == colorId);
         }
 
+        public Car GetById(int carId)
+        {
+            return _carDal.Get(c => c.CarId == carId);
+        }
+
         public List<CarDetailDto> GetCarDetails()
         {
             return _carDal.GetCarDetails();
@@ -71,8 +77,12 @@ namespace Business.Concrete
 
         public void Update(Car car)
         {
+
             _carDal.Update(car);
+            
             Console.WriteLine("Updated to db");
         }
+
+      
     }
 }
