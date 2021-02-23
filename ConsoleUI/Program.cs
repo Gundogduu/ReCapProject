@@ -41,7 +41,7 @@ namespace ConsoleUI
             CarManager manager = new CarManager(new EfCarDal());
 
             //add
-            //manager.Add(new Car { BrandId = 6, ColorId = 1, DailyPrice = 145, ModelYear = "2014", Description = "Bluemotion firmasının ofisinden teslim alacaksınız" });
+            //manager.Add(new Car { BrandId = 6, ColorId = 1, DailyPrice = 145, ModelYear = "2014", Description = "Bluemotion firmasının ofisinden teslim alabilirsiniz" });
 
             //get
             foreach (var car in manager.GetCarDetails())
