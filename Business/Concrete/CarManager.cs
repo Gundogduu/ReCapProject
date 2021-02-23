@@ -40,6 +40,12 @@ namespace Business.Concrete
             }
         }
 
+        public void Delete(Car car)
+        {
+            _carDal.Delete(car);
+            Console.WriteLine("Deleted to db");
+        }
+
         public List<Car> GetAll()
         {
            return _carDal.GetAll();
@@ -60,6 +66,12 @@ namespace Business.Concrete
         public List<CarDetailDto> GetCarDetails()
         {
             return _carDal.GetCarDetails();
+        }
+
+        public void Update(Car car)
+        {
+            _carDal.Update(car);
+            Console.WriteLine("Updated to db");
         }
     }
 }
