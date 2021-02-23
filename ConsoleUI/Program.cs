@@ -9,9 +9,9 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            //CarTest();
+            CarTest();
             //BrandTest();
-            ColorTest();
+            //ColorTest();
         }
 
         private static void ColorTest()
@@ -41,12 +41,12 @@ namespace ConsoleUI
             CarManager manager = new CarManager(new EfCarDal());
 
             //add
-            manager.Add(new Car { BrandId = 6, ColorId = 1, DailyPrice = 145, ModelYear = "2014", Description = "Bluemotion firmasının ofisinden teslim alacaksınız" });
+            //manager.Add(new Car { BrandId = 6, ColorId = 1, DailyPrice = 145, ModelYear = "2014", Description = "Bluemotion firmasının ofisinden teslim alacaksınız" });
 
             //get
-            foreach (var car in manager.GetAll())
+            foreach (var car in manager.GetCarDetails())
             {
-                Console.WriteLine(car.Description);
+                Console.WriteLine("Brand: " + car.BrandName + " Color: " + car.ColorName + " Daily price: " + car.DailyPrice + " tl");
             }
         }
     }
