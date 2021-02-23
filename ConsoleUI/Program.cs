@@ -9,6 +9,35 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
+            //CarTest();
+            //BrandTest();
+            ColorTest();
+        }
+
+        private static void ColorTest()
+        {
+            ColorManager manager = new ColorManager(new EfColorDal());
+            foreach (var color in manager.GetAll())
+            {
+                Console.WriteLine(color.ColorName);
+            }
+
+            Console.WriteLine(manager.GetById(2).ColorName);
+        }
+
+        private static void BrandTest()
+        {
+            BrandManager manager = new BrandManager(new EfBrandDal());
+            foreach (var brand in manager.GetAll())
+            {
+                Console.WriteLine(brand.BrandName);
+            }
+
+            Console.WriteLine(manager.GetById(2).BrandName);
+        }
+
+        private static void CarTest()
+        {
             CarManager manager = new CarManager(new EfCarDal());
 
             //add
@@ -19,10 +48,6 @@ namespace ConsoleUI
             {
                 Console.WriteLine(car.Description);
             }
-
-            
-
-
         }
     }
 }
