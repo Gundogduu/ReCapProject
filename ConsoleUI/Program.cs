@@ -53,6 +53,9 @@ namespace ConsoleUI
 
             //update
             manager.Update(new Car { CarId = 30, BrandId = 2, ColorId = 3, DailyPrice = 125, ModelYear = "2016", Description = "Bluemotion firmasının ofisinden teslim alabilirsiniz"});
+
+           
+
         }
     }
 }

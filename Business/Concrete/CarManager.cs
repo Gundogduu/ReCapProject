@@ -43,6 +43,7 @@ namespace Business.Concrete
         public void Delete(Car car)
         {
             _carDal.Delete(car);
+
             Console.WriteLine("Deleted to db");
         }
 
