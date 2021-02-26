@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
@@ -31,56 +32,57 @@ namespace Business.Concrete
                 if (car.DailyPrice > 0 && context.Brands.First(b=>b.BrandId== car.BrandId).BrandName.Length > 2)
                 {
                     _carDal.Add(car);
-                    Console.WriteLine("Saved to db: Id Number " + car.CarId);
+                    return new SuccessResult(Messages.CarAdded);
                 }
-                else
-                {
-                    Console.WriteLine("Data could not be saved. BrandName must not be less than 2 characters and DailyPrice must be greater than 0");
-                }
+                return new ErrorResult(Messages.CarInValid);
             }
-            return new Result(true,"Ürün eklendi");
         }
 
-        public void Delete(Car car)
+        public IResult Delete(Car car)
         {
             _carDal.Delete(car);
 
-            Console.WriteLine("Deleted to db");
+            return new SuccessResult(Messages.CarDeleted);
         }
 
-        public List<Car> GetAll()
+        public IDataResult<List<Car>> GetAll()
         {
-           return _carDal.GetAll();
+           return new SuccessDataResult<List<Car>>(_carDal.GetAll());
         }
 
-        public List<Car> GetByBrandId(int brandId)
+        public IDataResult<List<Car>> GetByBrandId(int brandId)
         {
-            return _carDal.GetAll(c => c.BrandId == brandId); 
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.BrandId == brandId)); 
             
 
         }
 
-        public List<Car> GetByColorId(int colorId)
+        public IDataResult<List<Car>> GetByColorId(int colorId)
         {
-            return _carDal.GetAll(c => c.ColorId == colorId);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == colorId));
         }
 
-        public Car GetById(int carId)
+        public IDataResult<Car> GetById(int carId)
         {
-            return _carDal.Get(c => c.CarId == carId);
+            return new SuccessDataResult<Car>(_carDal.Get(c => c.CarId == carId));
         }
 
-        public List<CarDetailDto> GetCarDetails()
+        public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
-            return _carDal.GetCarDetails();
+            //şu an saat 22 ise
+            if (DateTime.Now.Hour==22)
+            {
+                return new ErrorDataResult<List<CarDetailDto>>(Messages.MaintenanceTime);
+            }
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails());
         }
 
-        public void Update(Car car)
+        public IResult Update(Car car)
         {
 
             _carDal.Update(car);
-            
-            Console.WriteLine("Updated to db");
+
+            return new SuccessResult(Messages.CarUpdated);
         }
 
       

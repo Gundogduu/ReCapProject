@@ -16,16 +16,16 @@ namespace Core.Utilities.Results
             Message = message;
         }
 
-        //method overloading kullandık çünkü mesaj vermek istemeyebiliriz
-        public Result(bool success)
+        
+        public Result(bool success)               //method overloading kullandık çünkü mesaj vermek istemeyebiliriz
         {
             Success = success;
         }
 
-        //işlem başarılı,başarısız
-        public bool Success { get; }
-        //bilgilendirme
-        public string Message { get; }
+                                           
+        public bool Success { get; }              //işlem başarılı,başarısız
+
+        public string Message { get; }            //bilgilendirme
     }
 }
 //property'lere set eylemi eklemedik ama getter'lar readonly'dir constructor da set'edilebilir!

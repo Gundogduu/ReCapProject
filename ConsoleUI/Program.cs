@@ -46,10 +46,19 @@ namespace ConsoleUI
             //manager.Add(new Car { BrandId = 5, ColorId = 1, DailyPrice = 145, ModelYear = "2014", Description = "Bluemotion firmasının ofisinden teslim alabilirsiniz" });
 
             //get
-            foreach (var car in manager.GetCarDetails())
+            var result = manager.GetCarDetails();
+            if (result.Success == true)
             {
-                Console.WriteLine("Brand: " + car.BrandName + " Color: " + car.ColorName + " Daily price: " + car.DailyPrice + " tl");
+                foreach (var car in result.Data)
+                {
+                    Console.WriteLine("Brand: " + car.BrandName + " Color: " + car.ColorName + " Daily price: " + car.DailyPrice + " tl");
+                }
             }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+            
 
             //update
             manager.Update(new Car { CarId = 30, BrandId = 2, ColorId = 3, DailyPrice = 125, ModelYear = "2016", Description = "Bluemotion firmasının ofisinden teslim alabilirsiniz"});
