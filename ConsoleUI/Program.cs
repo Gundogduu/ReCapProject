@@ -9,11 +9,43 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            CarTest();
+            //CarTest();
             //BrandTest();
             //ColorTest();
-           
-        
+            //UserTest();
+            //CustomerTest();
+            RentalTest();
+        }
+
+        private static void RentalTest()
+        {
+            RentalManager manager = new RentalManager(new EfRentalDal());
+            var result = manager.Add(new Rental { CarId = 13, CustomerId = 5, RentDate = DateTime.Now, ReturnDate = DateTime.Now });
+            if (result.Success)
+            {
+                Console.WriteLine(result.Message);
+            }
+
+        }
+
+        private static void CustomerTest()
+        {
+            CustomerManager manager = new CustomerManager(new EfCustomerDal());
+            var result = manager.Add(new Customer { UserId = 5 });
+            if (result.Success)
+            {
+                Console.WriteLine(result.Message);
+            }
+        }
+
+        private static void UserTest()
+        {
+            UserManager manager = new UserManager(new EfUserDal());
+            var result = manager.Add(new User { FirstName = "Cemre", LastName = "Bol", Email = "bol23@outlook.com", PassWord = "23000" });
+            if (result.Success)
+            {
+                Console.WriteLine(result.Message);
+            }
         }
 
         private static void ColorTest()

@@ -1,5 +1,8 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Core.Utilities.Results;
+using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -9,39 +12,56 @@ namespace Business.Concrete
 {
     public class RentalManager : IRentalService
     {
+
+        IRentalDal _rentalDal;
+
+        public RentalManager(IRentalDal rentalDal)
+        {
+            _rentalDal = rentalDal;
+        }
+
         public IResult Add(Rental rental)
         {
-            throw new NotImplementedException();
+            using (DatabasecampContext context = new DatabasecampContext())
+            {
+                //iş kodları
+                _rentalDal.Add(rental);
+                return new SuccessResult(Messages.CarRented);
+            }
         }
 
         public IResult Delete(Rental rental)
         {
-            throw new NotImplementedException();
+            _rentalDal.Delete(rental);
+
+            return new SuccessResult(Messages.RentalCanceled);
         }
 
         public IDataResult<List<Rental>> GetAll()
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll());
         }
 
         public IDataResult<Rental> GetByCarId(int carId)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.CarId == carId));
         }
 
         public IDataResult<Rental> GetByCustomerId(int customerId)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.CustomerId == customerId));
         }
 
         public IDataResult<Rental> GetById(int rentalId)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.RentalId == rentalId));
         }
 
         public IResult Update(Rental rental)
         {
-            throw new NotImplementedException();
+            _rentalDal.Update(rental);
+
+            return new SuccessResult(Messages.RentalUpdated);
         }
     }
 }
