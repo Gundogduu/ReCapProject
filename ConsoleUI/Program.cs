@@ -20,10 +20,15 @@ namespace ConsoleUI
         private static void RentalTest()
         {
             RentalManager manager = new RentalManager(new EfRentalDal());
-            var result = manager.Add(new Rental { CarId = 13, CustomerId = 5, RentDate = DateTime.Now, ReturnDate = DateTime.Now });
-            if (result.Success)
+            //var result = manager.Add(new Rental { CarId = 9, CustomerId = 3, RentDate = DateTime.Now});          //diğer kullanım: new DateTime(27.02.2021)
+            //if (result.Success)
+            //{
+            //    Console.WriteLine(result.Message);
+            //}
+
+            foreach (var rent in manager.GetAll().Data)
             {
-                Console.WriteLine(result.Message);
+                Console.WriteLine("Customer ID: {0} Car ID: {1} Rent date: {2} Return date: {3}", rent.CustomerId, rent.CarId, rent.RentDate, rent.ReturnDate);
             }
 
         }
@@ -74,30 +79,40 @@ namespace ConsoleUI
         {
             CarManager manager = new CarManager(new EfCarDal());
 
-            //add
-            //manager.Add(new Car { BrandId = 5, ColorId = 1, DailyPrice = 145, ModelYear = "2014", Description = "Bluemotion firmasının ofisinden teslim alabilirsiniz" });
-
-            //get
-            var result = manager.GetCarDetails();
-            if (result.Success == true)
-            {
-                foreach (var car in result.Data)
-                {
-                    Console.WriteLine("Brand: " + car.BrandName + " Color: " + car.ColorName + " Daily price: " + car.DailyPrice + " tl");
-                }
-            }
-            else
+            //ADD
+            var result = manager.Add(new Car { BrandId = 5, ColorId = 1, DailyPrice = 145, ModelYear = "2014", Description = "Bluemotion firmasının ofisinden teslim alabilirsiniz" });
+            if (result.Success)
             {
                 Console.WriteLine(result.Message);
             }
-            
 
-            //update
-            manager.Update(new Car { CarId = 30, BrandId = 2, ColorId = 3, DailyPrice = 125, ModelYear = "2016", Description = "Bluemotion firmasının ofisinden teslim alabilirsiniz"});
+            //GET
+            //var result = manager.GetCarDetails();
+            //if (result.Success == true)
+            //{
+            //    foreach (var car in result.Data)
+            //    {
+            //        Console.WriteLine("Brand: " + car.BrandName + " Color: " + car.ColorName + " Daily price: " + car.DailyPrice + " tl");
+            //    }
+            //}
+            //else
+            //{
+            //    Console.WriteLine(result.Message);
+            //}
 
-            //delete
+
+            //UPDATE
+            //manager.Update(new Car { CarId = 30, BrandId = 2, ColorId = 3, DailyPrice = 125, ModelYear = "2016", Description = "Bluemotion firmasının ofisinden teslim alabilirsiniz"});
+
             
-           
+            //DELETE
+            //var result = manager.Delete(new Car { CarId = 31 });
+            //if (result.Success)
+            //{
+            //    Console.WriteLine(result.Message);
+            //}
+
+
 
         }
     }
