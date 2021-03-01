@@ -56,23 +56,23 @@ namespace ConsoleUI
         private static void ColorTest()
         {
             ColorManager manager = new ColorManager(new EfColorDal());
-            foreach (var color in manager.GetAll())
+            foreach (var color in manager.GetAll().Data)
             {
                 Console.WriteLine(color.ColorName);
             }
 
-            Console.WriteLine(manager.GetById(2).ColorName);
+            Console.WriteLine(manager.GetById(2).Message);
         }
 
         private static void BrandTest()
         {
             BrandManager manager = new BrandManager(new EfBrandDal());
-            foreach (var brand in manager.GetAll())
+            foreach (var brand in manager.GetAll().Data)
             {
                 Console.WriteLine(brand.BrandName);
             }
 
-            Console.WriteLine(manager.GetById(2).BrandName);
+            Console.WriteLine(manager.GetById(2).Message);
         }
 
         private static void CarTest()
