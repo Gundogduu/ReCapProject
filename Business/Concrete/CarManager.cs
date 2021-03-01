@@ -1,10 +1,13 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Entities.DTOs;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,17 +28,19 @@ namespace Business.Concrete
 
         public IResult Add(Car car)
         {
+            ValidationTool.Validate(new CarValidator(), car);
+            //Loglama
+            //cacheremove
+            //performance
+            //transaction
+            //yetkilendirmeler
+            
+            //business codes
 
-            using (DatabasecampContext context = new DatabasecampContext())
-            {
-                //iş kodları
-                if (car.DailyPrice > 0 && context.Brands.First(b=>b.BrandId== car.BrandId).BrandName.Length > 2)
-                {
-                    _carDal.Add(car);
-                    return new SuccessResult(Messages.CarAdded);
-                }
-                return new ErrorResult(Messages.CarInValid);
-            }
+            _carDal.Add(car);
+            return new SuccessResult(Messages.CarAdded);
+
+
         }
 
         public IResult Delete(Car car)
