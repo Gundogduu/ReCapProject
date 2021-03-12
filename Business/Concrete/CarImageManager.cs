@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Helpers;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -20,12 +22,21 @@ namespace Business.Concrete
             _carImageDal = carImageDal;
         }
 
+        [ValidationAspect(typeof(CarImageValidator))]
         public IResult Add(IFormFile file, CarImage carImage)
         {
             carImage.ImagePath = FileHelper.Add(file);
             carImage.Date = DateTime.Now;
             _carImageDal.Add(carImage);
             return new SuccessResult(Messages.CarImageAdded);
+        }
+        
+        public IResult Update(IFormFile file, CarImage carImage)
+        {
+            carImage.ImagePath = FileHelper.Update(_carImageDal.Get(i => i.Id == carImage.Id).ImagePath, file);
+            carImage.Date = DateTime.Now;
+            _carImageDal.Update(carImage);
+            return new SuccessResult(Messages.CarImageUpdated);
         }
 
         public IResult Delete(CarImage carImage)
@@ -42,20 +53,12 @@ namespace Business.Concrete
 
         public IDataResult<List<CarImage>> GetAll()
         {
-            return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(),Messages.CarImageListed);
+            return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(),Messages.CarImagesListed);
         }
 
         public IDataResult<List<CarImage>> GetImageByCarId(int carId)
         {
             return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(c=>c.CarId==carId));
-        }
-
-        public IResult Update(IFormFile file, CarImage carImage)
-        {
-            carImage.ImagePath = FileHelper.Update(_carImageDal.Get(i => i.Id == carImage.Id).ImagePath, file);
-            carImage.Date = DateTime.Now;
-            _carImageDal.Update(carImage);
-            return new SuccessResult(Messages.CarImageUpdated);
         }
     }
 }
