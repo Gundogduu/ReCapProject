@@ -9,7 +9,7 @@ namespace DataAccess.Abstract
 {
     public interface ICarDal:IEntityRepository<Car>
     {
-        //burada artık Car'a özel operasyonları yazabiliriz dto gibi.
+        
         List<CarDetailDto> GetCarDetails();
     }
 }

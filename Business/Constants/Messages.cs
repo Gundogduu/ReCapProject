@@ -32,13 +32,9 @@ namespace Business.Constants
         public static string ColorUpdated = "Renk güncellendi";
         public static string ColorDeleted = "Renk silindi";
         public static string ColorsListed = "Renkler listelendi";
-        
+        public static string CarImageAdded = "Araba resmi eklendi";
+        public static string CarImageDelete = "Araba resmi silindi";
+        public static string CarImageUpdated = "Araba resmi güncellendi";
+        public static string CarImagesListed = "Araba resimleri listelendi";
     }
 }
-
-//static verdiğinizde istediğiniz yerde newlemeden direkt çağırabilirsiniz
-//bu tip yapılarda böyle kullanırız
-
-//Temel mesajlarımızı buranın içine koyacağız
-//bunları değişken olmalarına rağmen pascalcase yazdık çünkü public olarak tanımladık. İçeride private field olarak tanımlasaydık carAdded,carInValid şeklinde yazardık.
-//şu anda messagess sadece tool görevi görüyor. Daha ileri kullanımlarıda göreceğiz

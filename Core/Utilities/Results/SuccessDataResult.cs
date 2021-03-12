@@ -11,20 +11,19 @@ namespace Core.Utilities.Results
 
         }
         
-        public SuccessDataResult(T data) : base(data, true)                                 //mesajsız,sadece data döndürmek için
+        public SuccessDataResult(T data) : base(data, true)                                
         {
 
         }
 
-        public SuccessDataResult(string message) : base(default,true,message)               //default, olarak döndürmek. Çok az kullanacağımız bir yöntem ama bütün kullanımı görün diye yazdım
+        public SuccessDataResult(string message) : base(default,true,message)               
         {
 
         }
 
-        public SuccessDataResult() : base(default,true)                                     //bu versiyonda da hiç bir şey vermiyorum sadece true döndür diyorum
+        public SuccessDataResult() : base(default,true)
         {
-
         }
     }
 }
-//bu son iki versiyonu çok kullanmayız ama bir altyapı oluşturduğumuzdan bütün alternatifleride kullandırma eğilimi olmalı.
+

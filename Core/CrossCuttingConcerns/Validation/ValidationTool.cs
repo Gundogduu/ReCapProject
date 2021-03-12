@@ -19,11 +19,4 @@ namespace Core.CrossCuttingConcerns.Validation
     }
 }
 
-//kural kodunun business'da yazdığımız hali
-//var context = new ValidationContext<Car>(car);
-//CarValidator carValidator = new CarValidator();
-//var result = CarValidator.Validate(context);
-//if (!result.IsValid)
-//{
-//    throw new ValidationException(result.Errors);
-//}
+

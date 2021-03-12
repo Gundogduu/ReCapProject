@@ -30,14 +30,7 @@ namespace Business.Concrete
         [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
-            //Loglama
-            //cacheremove
-            //performance
-            //transaction
-            //yetkilendirmeler
-            //bunları böyle yapmak yerine AOP ile yapacağız
-            
-            //business codes
+           
 
             _carDal.Add(car);
             return new SuccessResult(Messages.CarAdded);
@@ -76,7 +69,6 @@ namespace Business.Concrete
 
         public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
-            //şu an saat 22 ise
             if (DateTime.Now.Hour==22)
             {
                 return new ErrorDataResult<List<CarDetailDto>>(Messages.MaintenanceTime);

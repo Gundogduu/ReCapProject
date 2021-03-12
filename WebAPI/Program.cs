@@ -18,7 +18,7 @@ namespace WebAPI
         {
             CreateHostBuilder(args).Build().Run();
         }
-        //server ile ilgili konfigürasyonun olduðu yer...
+        
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .UseServiceProviderFactory(new AutofacServiceProviderFactory())
@@ -32,13 +32,3 @@ namespace WebAPI
                 });
     }
 }
-//.UseServiceProviderFactory(new AutofacServiceProviderFactory()
-//.ConfigureContainer<ContainerBuilder>(builder =>
-// {
-//     builder.RegisterModule(new AutofacBusinessModule());
-// }) 'yi kullanarak, .NET'e kendi IoC yapýný kullanma, fabrika olarak Autofac'i kullan diyoruz.
-//.ConfigureContainer'a Autofac'in konumunu verdik.
-//Gözünüz korkmasýn. Bunlarýn sýralanýþýný hocada ezbere bilmiyor doc'a bakýp öyle yazýyor.
-
-//Diyelim ki yarýn bir gün Autofac'ten vazgeçmek istersek, baþka bir yapý kullanmak istersek.
-//Yapacaðýmýz iþlem: DependencyResolvers'da yeni yapý kurmak ve burada yani Program.cs'deki new'leri deðiþtirmek.Sadece bu!

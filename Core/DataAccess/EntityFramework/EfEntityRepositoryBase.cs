@@ -68,5 +68,3 @@ namespace Core.DataAccess.EntityFramework
         }
     }
 }
-//Bu yapıyı yazdığımızda artık biz projemizde veritabanına yeni bir tablo eklediğimizde
-//CRUD operasyonlarını get,getbyıd,filtreleme operasyonlarını tekrar tekrar yazmayacağız.

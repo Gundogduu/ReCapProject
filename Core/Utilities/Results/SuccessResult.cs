@@ -7,15 +7,14 @@ namespace Core.Utilities.Results
     public class SuccessResult:Result
     {
         
-        public SuccessResult(string message) : base(true, message)          //burada base demek yukarıdaki Result demek. Kullanıcının işleminin başarılı olduğunu bildiriyoruz.
+        public SuccessResult(string message) : base(true, message)         
         {
 
         }
 
-        public SuccessResult() : base(true)                                 //method overloading, biz artık mesaj vermeden default olarak true döndürebiliriz
+        public SuccessResult() : base(true)                                 
         {
 
         }
     }
 }
-//sektörde try-catch veya bu şekilde sadece true, mesaj döndüren veya false, message döndüren bir contructor yapısı kullanırız.
