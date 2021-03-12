@@ -30,18 +30,21 @@ namespace Business.Concrete
         [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
+            //business code
            
-
             _carDal.Add(car);
             return new SuccessResult(Messages.CarAdded);
+        }
 
-
+        public IResult Update(Car car)
+        {
+            _carDal.Update(car);
+            return new SuccessResult(Messages.CarUpdated);
         }
 
         public IResult Delete(Car car)
         {
             _carDal.Delete(car);
-
             return new SuccessResult(Messages.CarDeleted);
         }
 
@@ -52,8 +55,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetByBrandId(int brandId)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.BrandId == brandId)); 
-            
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.BrandId == brandId));   
 
         }
 
@@ -75,15 +77,5 @@ namespace Business.Concrete
             }
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails());
         }
-
-        public IResult Update(Car car)
-        {
-
-            _carDal.Update(car);
-
-            return new SuccessResult(Messages.CarUpdated);
-        }
-
-      
     }
 }
