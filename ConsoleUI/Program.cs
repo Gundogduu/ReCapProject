@@ -77,7 +77,8 @@ namespace ConsoleUI
 
         private static void CarTest()
         {
-            CarManager manager = new CarManager(new EfCarDal());
+            CarManager manager = new CarManager(new EfCarDal(),
+                new BrandManager(new EfBrandDal()));
 
             //ADD
             var result = manager.Add(new Car { BrandId = 5, ColorId = 1, DailyPrice = 145, ModelYear = "2014", Description = "Bluemotion firmasının ofisinden teslim alabilirsiniz" });
@@ -85,35 +86,6 @@ namespace ConsoleUI
             {
                 Console.WriteLine(result.Message);
             }
-
-            //GET
-            //var result = manager.GetCarDetails();
-            //if (result.Success == true)
-            //{
-            //    foreach (var car in result.Data)
-            //    {
-            //        Console.WriteLine("Brand: " + car.BrandName + " Color: " + car.ColorName + " Daily price: " + car.DailyPrice + " tl");
-            //    }
-            //}
-            //else
-            //{
-            //    Console.WriteLine(result.Message);
-            //}
-
-
-            //UPDATE
-            //manager.Update(new Car { CarId = 30, BrandId = 2, ColorId = 3, DailyPrice = 125, ModelYear = "2016", Description = "Bluemotion firmasının ofisinden teslim alabilirsiniz"});
-
-            
-            //DELETE
-            //var result = manager.Delete(new Car { CarId = 31 });
-            //if (result.Success)
-            //{
-            //    Console.WriteLine(result.Message);
-            //}
-
-
-
         }
     }
 }

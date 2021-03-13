@@ -2,12 +2,14 @@
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
+using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Business.Concrete
@@ -24,8 +26,13 @@ namespace Business.Concrete
         [ValidationAspect(typeof(BrandValidator))]
         public IResult Add(Brand brand)
         {
+            IResult result = BusinessRules.Run(CheckIfBrandNameIsTheSame(brand.BrandName));
+            if (result != null)
+            {
+                return result;
+            }
             _brandDal.Add(brand);
-            return new SuccessResult(Messages.BrandAdded);
+            return new SuccessResult(Messages.BrandAdded);         
         }
 
         public IResult Update(Brand brand)
@@ -48,6 +55,17 @@ namespace Business.Concrete
         public IDataResult<Brand> GetById(int brandId)
         {
            return new SuccessDataResult<Brand>(_brandDal.Get(b => b.BrandId == brandId));
+        }
+
+        private IResult CheckIfBrandNameIsTheSame(string brandName)
+        {
+            var result = _brandDal.GetAll(b => b.BrandName == brandName).Any();
+            if (result == true)
+            {
+                return new ErrorResult();
+            }
+            return new SuccessResult();
+           
         }
     }
 }

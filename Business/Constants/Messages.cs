@@ -36,5 +36,8 @@ namespace Business.Constants
         public static string CarImageDelete = "Araba resmi silindi";
         public static string CarImageUpdated = "Araba resmi güncellendi";
         public static string CarImagesListed = "Araba resimleri listelendi";
+        public static string NumberOfImagesExceeded = "Maksimum resim sayısına ulaşıldı";
+        public static string BrandNameAlreadyExists = "Marka zaten mevcut";
+        public static string BrandLimitExceeded = "Maximum marka sayısına ulaşıldı";
     }
 }
