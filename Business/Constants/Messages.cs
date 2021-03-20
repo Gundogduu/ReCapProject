@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Business.Constants
@@ -39,5 +40,6 @@ namespace Business.Constants
         public static string NumberOfImagesExceeded = "Maksimum resim sayısına ulaşıldı";
         public static string BrandNameAlreadyExists = "Marka zaten mevcut";
         public static string BrandLimitExceeded = "Maximum marka sayısına ulaşıldı";
+        public static string AuthorizationDenied = "Yetkiniz yok";
     }
 }
