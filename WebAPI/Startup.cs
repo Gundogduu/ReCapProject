@@ -38,7 +38,6 @@ namespace WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            
 
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
            

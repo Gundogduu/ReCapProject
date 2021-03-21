@@ -26,4 +26,3 @@ namespace Core.Aspects.Autofac.Caching
         }
     }
 }
-//pattern'a göre silme işlemi yapıyor

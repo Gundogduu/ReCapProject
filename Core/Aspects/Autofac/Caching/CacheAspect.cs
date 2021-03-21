@@ -36,5 +36,3 @@ namespace Core.Aspects.Autofac.Caching
         }
     }
 }
-//string.Join("," ,arguments.Select(x => x?.ToString() ?? "<Null>"))})
-//string join, virgül ile bir araya getir demek, buradaki soru işareti, argüman varsa stringe çevrilebiliyorsa onu ekle yoksa null'ı ekle demek.

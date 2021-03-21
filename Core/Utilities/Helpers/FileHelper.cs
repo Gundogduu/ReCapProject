@@ -22,7 +22,6 @@ namespace Core.Utilities.Helpers
                 }
 
             }
-
             var result = NewPath(file);
             File.Move(sourcePath, result);
             return result;
@@ -31,7 +30,6 @@ namespace Core.Utilities.Helpers
 
         public static IResult Delete(string path)
         {
-
             try
             {
                 File.Delete(path);
@@ -67,9 +65,6 @@ namespace Core.Utilities.Helpers
 
             string result = $@"{path}\{newPath}";
             return result;
-        }
-        
-        
-        
+        }    
     }
 }
