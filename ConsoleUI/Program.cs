@@ -47,7 +47,7 @@ namespace ConsoleUI
         private static void UserTest()
         {
             UserManager manager = new UserManager(new EfUserDal());
-            var result = manager.Add(new User { FirstName = "Cemre", LastName = "Bol", Email = "bol23@outlook.com", PassWord = "23000" });
+            var result = manager.Add(new User { FirstName = "Cemre", LastName = "Bol", Email = "bol23@outlook.com"});
             if (result.Success)
             {
                 Console.WriteLine(result.Message);

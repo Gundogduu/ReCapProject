@@ -21,19 +21,14 @@ namespace Business.Concrete
         }
 
         public IResult Add(Rental rental)
-        {
-            using (DatabasecampContext context = new DatabasecampContext())
-            {
-                //iş kodları
-                _rentalDal.Add(rental);
-                return new SuccessResult(Messages.CarRented);
-            }
+        {     
+            _rentalDal.Add(rental);
+            return new SuccessResult(Messages.CarRented);
         }
 
         public IResult Delete(Rental rental)
         {
             _rentalDal.Delete(rental);
-
             return new SuccessResult(Messages.RentalCanceled);
         }
 
@@ -60,7 +55,6 @@ namespace Business.Concrete
         public IResult Update(Rental rental)
         {
             _rentalDal.Update(rental);
-
             return new SuccessResult(Messages.RentalUpdated);
         }
     }

@@ -110,12 +110,13 @@ namespace WebAPI.Controllers
         [HttpPost("delete")]
         public IActionResult Delete(Car car)
         {
-            var result = _carService.Delete(car);
+            var carId = _carService.GetById(car.CarId).Data;
+            var result = _carService.Delete(carId);
             if (result.Success)
             {
-                return Ok(result);
+                return Ok(result.Message);
             }
-            return BadRequest(result);
+            return BadRequest(result.Message);
         }
     }
 }

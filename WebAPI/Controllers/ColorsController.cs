@@ -72,7 +72,8 @@ namespace WebAPI.Controllers
         [HttpPost("delete")]
         public IActionResult Delete(Color color)
         {
-            var result = _colorService.Delete(color);
+            var colorId = _colorService.GetById(color.ColorId).Data;
+            var result = _colorService.Delete(colorId);
             if (result.Success)
             {
                 return Ok(result);

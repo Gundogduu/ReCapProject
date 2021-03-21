@@ -79,12 +79,13 @@ namespace WebAPI.Controllers
         [HttpPost("delete")]
         public IActionResult Delete(User user)
         {
-            var result = _userService.Delete(user);
+            var userId = _userService.GetById(user.Id).Data;
+            var result = _userService.Delete(userId);
             if (result.Success)
             {
-                return Ok(result);
+                return Ok(result.Message);
             }
-            return BadRequest(result);
+            return BadRequest(result.Message);
         }
     }
 }

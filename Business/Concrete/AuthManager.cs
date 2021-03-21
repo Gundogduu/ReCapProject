@@ -43,12 +43,12 @@ namespace Business.Concrete
                 return new ErrorDataResult<User>("Kullanıcı bulunamadı");
             }
 
-            if (!HashingHelper.VerifyPasswordHash(userForLoginDto.Password, userToCheck.Data.PasswordHash, userToCheck.Data.PasswordSalt))
+            if (!HashingHelper.VerifyPasswordHash(userForLoginDto.Password, userToCheck.PasswordHash, userToCheck.PasswordSalt))
             {
                 return new ErrorDataResult<User>("Parola hatası");
             }
 
-            return new SuccessDataResult<User>(userToCheck.Data,"Başarılı giriş");
+            return new SuccessDataResult<User>(userToCheck,"Başarılı giriş");
         }
 
         public IResult UserExists(string email)
@@ -63,7 +63,7 @@ namespace Business.Concrete
         public IDataResult<AccessToken> CreateAccessToken(User user)
         {
             var claims = _userService.GetClaims(user);
-            var accessToken = _tokenHelper.CreateToken(user, claims.Data);
+            var accessToken = _tokenHelper.CreateToken(user, claims);
             return new SuccessDataResult<AccessToken>(accessToken, "Token oluşturuldu");
         }
     }
