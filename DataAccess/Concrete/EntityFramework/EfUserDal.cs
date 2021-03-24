@@ -21,7 +21,7 @@ namespace DataAccess.Concrete.EntityFramework
                              select new UserDetailDto
                              {
                                  UserId = u.Id, CompanyName = c.CompanyName,
-                                 CustomerId = c.CustomerId
+                                 CustomerId = c.Id
                              };
                 return result.ToList();
 
