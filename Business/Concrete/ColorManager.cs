@@ -9,6 +9,7 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace Business.Concrete
 {
@@ -43,6 +44,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Color>> GetAll()
         {
+            Thread.Sleep(2000);
             return new SuccessDataResult<List<Color>>(_colorDal.GetAll(),Messages.ColorsListed);
         }
         

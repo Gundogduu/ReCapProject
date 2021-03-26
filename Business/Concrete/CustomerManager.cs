@@ -9,6 +9,7 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace Business.Concrete
 {
@@ -41,6 +42,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Customer>> GetAll()
         {
+            Thread.Sleep(2000);
             return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(),Messages.CustomersListed);
         }
 

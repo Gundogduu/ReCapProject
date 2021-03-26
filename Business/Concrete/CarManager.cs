@@ -92,6 +92,11 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails());
         }
 
+        public IDataResult<List<CarDetailDto>> GetDetailsByCar(int carId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.CarId == carId));
+        }
+
         private IResult CheckBrandLimitExceeded()
         {
             var result = _brandService.GetAll().Data.Count;
